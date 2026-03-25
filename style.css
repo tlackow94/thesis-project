@@ -14,6 +14,10 @@ a {
   color: white;
   text-decoration: none;
 }
-.source a {
-  color: #1a1a2e;
+.source h3 a {
+  color: #c0392b;
+}
+
+.source h3 a:hover {
+  text-decoration: underline;
 }
