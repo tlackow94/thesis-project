@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Map</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.29/"></script>
   </head>
   <body>
     <nav>
@@ -15,5 +17,31 @@
       </ul>
     </nav>
     <h1>Map</h1>
+    <div id="mapDiv"></div>
+    <script>
+  require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+  ], function(Map, MapView, FeatureLayer) {
+
+    var map = new Map({
+      basemap: "streets-navigation-vector"
+    });
+
+    var view = new MapView({
+      container: "mapDiv",
+      map: map,
+      center: [-117.5, 34.0], // Southern California
+      zoom: 9
+    });
+
+    var featureLayer = new FeatureLayer({
+      url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/0"
+    });
+
+    map.add(featureLayer);
+  });
+</script>
   </body>
 </html>
