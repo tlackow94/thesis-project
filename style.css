@@ -15,9 +15,13 @@ nav a {
   text-decoration: none;
 }
 .source h3 a {
-  color: ##2980b9;
+  color: #2980b9;
 }
 
 .source h3 a:hover {
   text-decoration: underline;
+}
+#mapDiv {
+  width: 100%;
+  height: 600px;
 }
