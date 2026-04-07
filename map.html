@@ -36,9 +36,13 @@
       zoom: 9
     });
 
-    var featureLayer = new FeatureLayer({
-      url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8"
-    });
+   var featureLayer = new FeatureLayer({
+  url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8",
+  popupTemplate: {
+    title: "Study Area {Id}",
+    content: "Area: {Shape__Area} square meters"
+  }
+});
 
     map.add(featureLayer);
   });
