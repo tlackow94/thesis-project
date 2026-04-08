@@ -58,7 +58,8 @@
 
     map.add(featureLayer);
   });
-      function zoomTo(x, y) {
+function zoomTo(x, y) {
+  console.log("zoomTo called", x, y);
   view.goTo({
     target: {
       x: x,
