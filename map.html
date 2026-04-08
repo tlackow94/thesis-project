@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.29/"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
   </head>
   <body>
     <nav>
@@ -17,9 +19,37 @@
       </ul>
     </nav>
     <h1>Map</h1>
+<h1>List of Study Areas</h1>
 
+<h2>Goals</h2>
+<ul>
+  <li>Assist with identifying solutions to help improve renewable energy resources in California.</li>
+  <li>Expanding upon existing knowledge base regarding new renewable energy developments.</li>
+  <li>Provide a robust framework that other organizations can utilize.</li>
+</ul>
+
+<h2>Objectives</h2>
+<ul>
+  <li>Determine framework for ranking locations in terms of suitability.</li>
+  <li>Develop a database of potential locations for developing renewable resources.</li>
+  <li>Create a map of locations, ranked by suitability.</li>
+  <li>Create an interactive dashboard for users to access.</li>
+</ul>
+<h2>Data Sources</h2>
+<p>The terrain data is derived from 1-meter DEM retrieved from The National Map supplied by the United States Geological Survey.</p>
+
+<h2>Methods</h2>
+<p>This project utilizes Multiple-Criteria Decision Analysis (MCDA) as the foundation. MCDA is utilized in site selection when there are multiple conflicting criteria. Traditionally, each criteria is ranked depending upon its range of values, with some values prioritized over others. A site's final score is a summation of the rankings from the various criteria that has been identified.</p>
+<p>The terrain criteria for this project include:</p>
+<ul>
+  <li>Slope</li>
+  <li>Aspect</li>
+  <li>Parcel Ownership</li>
+
+  
+</ul>
   <div id="sidebar">
-  <h3>Study Areas</h3>
+  <h3>Identified Study Areas</h3>
 <button onclick="zoomTo(-13069854, 4058901)">Study Area 1</button>
 <button onclick="zoomTo(-13077117, 4074872)">Study Area 2</button>
 <button onclick="zoomTo(-13044865, 3968891)">Study Area 3</button>
@@ -28,7 +58,10 @@
 
     
     <div id="mapDiv"></div>
+    <h2>3D Terrain View</h2>
+    <div id="terrainMap"></div>
     <script>
+    
     var view;
 
   require([
@@ -71,6 +104,28 @@ function zoomTo(x, y) {
     });
   });
 }
+</script>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGxhY2tvdyIsImEiOiJjbWxobmpndW0wYjZzM2xtejJwN3R0aDNvIn0.UA2hyZZ5uBDEWGEER7Cwrg';
+
+  var terrainMap = new mapboxgl.Map({
+    container: 'terrainMap',
+    style: 'mapbox://styles/mapbox/satellite-streets-v12',
+    center: [-117.5, 34.0],
+    zoom: 9,
+    pitch: 60,
+    bearing: -20
+  });
+
+  terrainMap.on('load', function() {
+    terrainMap.addSource('mapbox-dem', {
+      type: 'raster-dem',
+      url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+      tileSize: 512
+    });
+
+    terrainMap.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+  });
 </script>
   </body>
 </html>
