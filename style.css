@@ -2,7 +2,7 @@ nav {
   background-color: #1a1a2e;
 }
 
-ul {
+nav ul {
   list-style: none;
   display: flex;
   gap: 2rem;
