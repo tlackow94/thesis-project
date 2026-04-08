@@ -17,6 +17,16 @@
       </ul>
     </nav>
     <h1>Map</h1>
+
+  <div id="sidebar">
+  <h3>Study Areas</h3>
+  <button onclick="zoomTo(-117.44, 34.14)">Study Area 1</button>
+  <button onclick="zoomTo(-117.50, 34.40)">Study Area 2</button>
+  <button onclick="zoomTo(-117.20, 33.30)">Study Area 3</button>
+  <button onclick="zoomTo(-117.19, 33.40)">Study Area 4</button>
+</div>
+
+    
     <div id="mapDiv"></div>
     <script>
   require([
@@ -46,6 +56,12 @@
 
     map.add(featureLayer);
   });
+      function zoomTo(lon, lat) {
+    view.goTo({
+      center: [lon, lat],
+      zoom: 14
+           });
+  }
 </script>
   </body>
 </html>
