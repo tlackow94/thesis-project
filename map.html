@@ -59,14 +59,16 @@
     map.add(featureLayer);
   });
 function zoomTo(x, y) {
-  console.log("zoomTo called", x, y);
-  view.goTo({
-    target: {
+  require(["esri/geometry/Point"], function(Point) {
+    var point = new Point({
       x: x,
       y: y,
       spatialReference: { wkid: 102100 }
-    },
-    zoom: 14
+    });
+    view.goTo({
+      target: point,
+      zoom: 14
+    });
   });
 }
 </script>
