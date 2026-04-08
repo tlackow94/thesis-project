@@ -39,4 +39,9 @@ nav a {
   color: white;
   border: none;
   cursor: pointer;
+
+}
+#terrainMap {
+  width: 100%;
+  height: 600px;
 }
