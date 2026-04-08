@@ -58,12 +58,16 @@
 
     map.add(featureLayer);
   });
-      function zoomTo(lon, lat) {
-    view.goTo({
-      center: [lon, lat],
-      zoom: 14
-           });
-  }
+      function zoomTo(x, y) {
+  view.goTo({
+    target: {
+      x: x,
+      y: y,
+      spatialReference: { wkid: 102100 }
+    },
+    zoom: 14
+  });
+}
 </script>
   </body>
 </html>
