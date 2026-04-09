@@ -133,13 +133,15 @@ function zoomTo(x, y) {
   });
 
   terrainMap.addLayer({
-    id: 'study-area-dem-layer',
-    type: 'raster',
-    source: 'study-area-dem',
-    paint: {
-      'raster-opacity': 0.7
-    }
-  });
+  id: 'study-area-dem-layer',
+  type: 'raster',
+  source: 'study-area-dem',
+  paint: {
+    'raster-opacity': 0.7,
+    'raster-brightness-min': 0.3,
+    'raster-contrast': 0.8
+  }
+});
 });
   });
 </script>
