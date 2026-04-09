@@ -101,6 +101,8 @@ window.zoomTo = function(x, y, lon, lat) {
       spatialReference: { wkid: 102100 }
     },
     zoom: 14
+  }).catch(function(error) {
+    console.log("goTo error:", error);
   });
 
   terrainMap.flyTo({
