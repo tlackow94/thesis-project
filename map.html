@@ -118,13 +118,29 @@ function zoomTo(x, y) {
   });
 
   terrainMap.on('load', function() {
-    terrainMap.addSource('mapbox-dem', {
-      type: 'raster-dem',
-      url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-      tileSize: 512
-    });
+  terrainMap.addSource('mapbox-dem', {
+    type: 'raster-dem',
+    url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+    tileSize: 512
+  });
 
-    terrainMap.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+  terrainMap.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+
+  terrainMap.addSource('study-area-dem', {
+    type: 'raster',
+    url: 'mapbox://tlackow.4w5mcugx',
+    tileSize: 256
+  });
+
+  terrainMap.addLayer({
+    id: 'study-area-dem-layer',
+    type: 'raster',
+    source: 'study-area-dem',
+    paint: {
+      'raster-opacity': 0.7
+    }
+  });
+});
   });
 </script>
   </body>
