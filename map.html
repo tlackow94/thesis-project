@@ -94,16 +94,15 @@
   });
 window.zoomTo = function(x, y, lon, lat) {
   console.log("zoomTo called", x, y, lon, lat);
-  console.log("view status:", view ? view.ready : "view is null");
-  view.goTo({
-    target: {
+  
+  require(["esri/geometry/Point"], function(Point) {
+    var pt = new Point({
       x: x,
       y: y,
       spatialReference: { wkid: 102100 }
-    },
-    zoom: 14
-  }).catch(function(error) {
-    console.log("goTo error:", error);
+    });
+    view.center = pt;
+    view.zoom = 14;
   });
 
   terrainMap.flyTo({
