@@ -94,6 +94,7 @@
   });
 window.zoomTo = function(x, y, lon, lat) {
   console.log("zoomTo called", x, y, lon, lat);
+  console.log("view status:", view ? view.ready : "view is null");
   view.goTo({
     target: {
       x: x,
