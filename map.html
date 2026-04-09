@@ -63,6 +63,7 @@
     <script>
     
     var view;
+    var terrainMap;
 
   require([
     "esri/Map",
@@ -108,7 +109,7 @@ function zoomTo(x, y, lon, lat) {
 }
   mapboxgl.accessToken = 'pk.eyJ1IjoidGxhY2tvdyIsImEiOiJjbWxobmpndW0wYjZzM2xtejJwN3R0aDNvIn0.UA2hyZZ5uBDEWGEER7Cwrg';
 
-  var terrainMap = new mapboxgl.Map({
+  terrainMap = new mapboxgl.Map({
     container: 'terrainMap',
     style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [-117.5, 34.0],
