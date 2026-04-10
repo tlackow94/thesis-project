@@ -53,3 +53,16 @@ nav a {
   border-radius: 50%;
   border: 3px solid #1a1a2e;
 }
+
+body {
+  background-color: #0f1923;
+  color: #ffffff;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+}
+
+p, li {
+  color: rgba(255, 255, 255, 0.7);
+}
