@@ -84,3 +84,11 @@ p, li {
   flex: 1;
   height: 600px;
 }
+
+#map-container {
+  display: flex;
+  gap: 1rem;
+  max-width: 100vw;
+  margin-left: -2rem;
+  padding: 0 2rem;
+}
