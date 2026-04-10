@@ -73,3 +73,14 @@ a {
 p, li {
   color: rgba(255, 255, 255, 0.7);
 }
+
+
+#map-container {
+  display: flex;
+  gap: 1rem;
+}
+
+#mapDiv, #terrainMap {
+  flex: 1;
+  height: 600px;
+}
