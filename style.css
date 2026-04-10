@@ -55,14 +55,21 @@ nav a {
 }
 
 body {
+  color: #1a1a2e;
   background-color: #0f1923;
-  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 h1, h2, h3 {
   color: #ffffff;
 }
-
+a {
+  color: #4fc3f7;
+}
 p, li {
   color: rgba(255, 255, 255, 0.7);
 }
