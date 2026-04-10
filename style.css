@@ -55,12 +55,12 @@ nav a {
 }
 
 body {
-  color: #1a1a2e;
   background-color: #0f1923;
+  color: #ffffff;
   font-size: 18px;
   line-height: 1.7;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
   padding: 2rem;
 }
 
