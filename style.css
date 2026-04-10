@@ -36,11 +36,12 @@ nav a {
 #sidebar button {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  background: #1a1a2e;
-  color: white;
-  border: 2px solid #4fc3f7;
+  background: #4fc3f7;
+  color: #0f1923;
+  border: none;
   cursor: pointer;
 }
+
 
 }
 #terrainMap {
