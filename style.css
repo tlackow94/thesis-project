@@ -51,4 +51,5 @@ nav a {
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
+  border: 3px solid #1a1a2e;
 }
