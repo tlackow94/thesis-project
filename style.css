@@ -61,10 +61,11 @@ nav a {
 body {
   background-color: #0f1923;
   color: #ffffff;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.7;
   margin: 0;
   padding: 2rem;
+  font-family: Arial, sans-serif;
 }
 
 h1, h2, h3 {
