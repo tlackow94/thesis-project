@@ -65,67 +65,51 @@
   <div id="terrainMap"></div>
 </div>
     <script>
-    
-    var view;
-    var terrainMap;
+    require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+  ], function(Map, MapView, FeatureLayer) {
 
-require([
-  "esri/Map",
-  "esri/views/SceneView",
-  "esri/layers/FeatureLayer",
-  "esri/layers/ElevationLayer"
-], function(Map, SceneView, FeatureLayer) {
+    var map = new Map({
+      basemap: "topo-vector"
+    });
 
+    view = new MapView({
+      container: "mapDiv",
+      map: map,
+      center: [-117.5, 34.0],
+      zoom: 9
+    });
 
-
-  var map = new Map({
-    basemap: "topo-vector",
-    ground: "world-elevation"
-  });
-
-  view = new SceneView({
-    container: "mapDiv",
-    map: map,
-    camera: {
-      position: {
-        longitude: -117.5,
-        latitude: 34.0,
-        z: 50000
-      },
-      tilt: 60
-    }
-  });
-
-  var featureLayer = new FeatureLayer({
-    url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8",
-    popupTemplate: {
-      title: "Study Area {Id}",
-      content: "Area: {Shape__Area} square meters"
-    }
-  });
-
-  map.add(featureLayer);
+   var featureLayer = new FeatureLayer({
+  url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8",
+  popupTemplate: {
+    title: "Study Area {Id}",
+    content: "Area: {Shape__Area} square meters"
+  }
 });
+
+    map.add(featureLayer);
+  });
+
 window.zoomTo = function(x, y, lon, lat) {
-  console.log("zoomTo called", x, y, lon, lat);
-  
   require(["esri/geometry/Point"], function(Point) {
-  var pt = new Point({
-    x: x,
-    y: y,
-    spatialReference: { wkid: 102100 }
+    var pt = new Point({
+      x: x,
+      y: y,
+      spatialReference: { wkid: 102100 }
+    });
+    view.center = pt;
+    view.zoom = 14;
   });
-  view.goTo({
-    target: pt,
-    zoom: 14
-  });
-});
 
   terrainMap.flyTo({
     center: [lon, lat],
     zoom: 14
   });
 }
+
   mapboxgl.accessToken = 'pk.eyJ1IjoidGxhY2tvdyIsImEiOiJjbWxobmpndW0wYjZzM2xtejJwN3R0aDNvIn0.UA2hyZZ5uBDEWGEER7Cwrg';
 
   terrainMap = new mapboxgl.Map({
@@ -133,34 +117,18 @@ window.zoomTo = function(x, y, lon, lat) {
     style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [-117.5, 34.0],
     zoom: 9,
+    pitch: 60,
+    bearing: -20
   });
 
- terrainMap.on('load', function() {
-  terrainMap.addSource('study-areas', {
-    type: 'geojson',
-    data: 'https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8/query?where=1%3D1&outFields=*&f=geojson'
+  terrainMap.on('load', function() {
+    terrainMap.addSource('mapbox-dem', {
+      type: 'raster-dem',
+      url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+      tileSize: 512
+    });
+    terrainMap.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
   });
-
-  terrainMap.addLayer({
-    id: 'study-areas-fill',
-    type: 'fill',
-    source: 'study-areas',
-    paint: {
-      'fill-color': '#4fc3f7',
-      'fill-opacity': 0.4
-    }
-  });
-
-  terrainMap.addLayer({
-    id: 'study-areas-outline',
-    type: 'line',
-    source: 'study-areas',
-    paint: {
-      'line-color': '#4fc3f7',
-      'line-width': 2
-    }
-  });
-});
 </script>
   </body>
 </html>
