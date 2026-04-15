@@ -121,18 +121,35 @@ window.zoomTo = function(x, y, lon, lat) {
     style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [-117.5, 34.0],
     zoom: 9,
-    pitch: 60,
-    bearing: -20
   });
 
-  terrainMap.on('load', function() {
-  terrainMap.addSource('mapbox-dem', {
-    type: 'raster-dem',
-    url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-    tileSize: 512
+ terrainMap.on('load', function() {
+  terrainMap.addSource('study-areas', {
+    type: 'geojson',
+    data: 'https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8/query?where=1%3D1&outFields=*&f=geojson'
   });
 
-  terrainMap.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+  terrainMap.addLayer({
+    id: 'study-areas-fill',
+    type: 'fill',
+    source: 'study-areas',
+    paint: {
+      'fill-color': '#4fc3f7',
+      'fill-opacity': 0.4
+    }
+  });
+
+  terrainMap.addLayer({
+    id: 'study-areas-outline',
+    type: 'line',
+    source: 'study-areas',
+    paint: {
+      'line-color': '#4fc3f7',
+      'line-width': 2
+    }
+  });
+});
+
   });
 </script>
   </body>
