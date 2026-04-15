@@ -69,11 +69,14 @@
     var view;
     var terrainMap;
 
- require([
+require([
   "esri/Map",
   "esri/views/SceneView",
-  "esri/layers/FeatureLayer"
-], function(Map, SceneView, FeatureLayer) {
+  "esri/layers/FeatureLayer",
+  "esri/layers/ElevationLayer"
+], function(Map, SceneView, FeatureLayer,) {
+
+
 
   var map = new Map({
     basemap: "topo-vector",
