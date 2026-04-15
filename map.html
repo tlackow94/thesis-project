@@ -69,29 +69,39 @@
     var view;
     var terrainMap;
 
-  require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/layers/FeatureLayer"
-  ], function(Map, MapView, FeatureLayer) {
+ require([
+  "esri/Map",
+  "esri/views/SceneView",
+  "esri/layers/FeatureLayer"
+], function(Map, SceneView, FeatureLayer) {
 
-    var map = new Map({
-      basemap: "topo-vector"
-    });
+  var map = new Map({
+    basemap: "topo-vector",
+    ground: "world-elevation"
+  });
 
-    view = new MapView({
-      container: "mapDiv",
-      map: map,
-      center: [-117.5, 34.0],
-      zoom: 9
-    });
+  view = new SceneView({
+    container: "mapDiv",
+    map: map,
+    camera: {
+      position: {
+        longitude: -117.5,
+        latitude: 34.0,
+        z: 50000
+      },
+      tilt: 60
+    }
+  });
 
-   var featureLayer = new FeatureLayer({
-  url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8",
-  popupTemplate: {
-    title: "Study Area {Id}",
-    content: "Area: {Shape__Area} square meters"
-  }
+  var featureLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/o6oETlrWetREI1A2/arcgis/rest/services/Thesis_Project_Locations/FeatureServer/8",
+    popupTemplate: {
+      title: "Study Area {Id}",
+      content: "Area: {Shape__Area} square meters"
+    }
+  });
+
+  map.add(featureLayer);
 });
 
     map.add(featureLayer);
