@@ -74,7 +74,7 @@ require([
   "esri/views/SceneView",
   "esri/layers/FeatureLayer",
   "esri/layers/ElevationLayer"
-], function(Map, SceneView, FeatureLayer,) {
+], function(Map, SceneView, FeatureLayer) {
 
 
 
@@ -110,14 +110,16 @@ window.zoomTo = function(x, y, lon, lat) {
   console.log("zoomTo called", x, y, lon, lat);
   
   require(["esri/geometry/Point"], function(Point) {
-    var pt = new Point({
-      x: x,
-      y: y,
-      spatialReference: { wkid: 102100 }
-    });
-    view.center = pt;
-    view.zoom = 14;
+  var pt = new Point({
+    x: x,
+    y: y,
+    spatialReference: { wkid: 102100 }
   });
+  view.goTo({
+    target: pt,
+    zoom: 14
+  });
+});
 
   terrainMap.flyTo({
     center: [lon, lat],
