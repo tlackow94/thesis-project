@@ -73,7 +73,7 @@
   "esri/layers/FeatureLayer",
   "esri/layers/MapImageLayer",
   "esri/widgets/LayerList"
-], function(Map, MapView, FeatureLayer, MapImageLayer, LayerList) {
+], function(Map, MapView, FeatureLayer, TileLayer, LayerList) {
 
   var map = new Map({
     basemap: "topo-vector"
@@ -94,12 +94,12 @@
     }
   });
 
-  var slopeLayer = new MapImageLayer({
+  var slopeLayer = new TileLayer({
     url: "https://tiles.arcgis.com/tiles/o6oETlrWetREI1A2/arcgis/rest/services/CombinedSlope/MapServer",
     visible: false
   });
 
-  var aspectLayer = new MapImageLayer({
+  var aspectLayer = new TileLayer({
     url: "https://tiles.arcgis.com/tiles/o6oETlrWetREI1A2/arcgis/rest/services/CombinedAspect/MapServer",
     visible: false
   });
