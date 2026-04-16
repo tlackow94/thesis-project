@@ -95,14 +95,18 @@
   });
 
   var slopeLayer = new TileLayer({
-    url: "https://tiles.arcgis.com/tiles/o6oETlrWetREI1A2/arcgis/rest/services/CombinedSlope/MapServer",
-    visible: false
-  });
+  portalItem: {
+    id: "7d060f23533c4e02a22453a4648f006a"
+  },
+  visible: false
+});
 
-  var aspectLayer = new TileLayer({
-    url: "https://tiles.arcgis.com/tiles/o6oETlrWetREI1A2/arcgis/rest/services/CombinedAspect/MapServer",
-    visible: false
-  });
+var aspectLayer = new TileLayer({
+  portalItem: {
+    id: "c494f9d852a347009dd22c089ec0eba0"
+  },
+  visible: false
+});
 
   map.add(slopeLayer);
   map.add(aspectLayer);
